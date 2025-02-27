@@ -1,0 +1,79 @@
+body {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  text-align: center;
+  background-image: url('alladin11.jpg');
+  background-size: cover; /*imagem para cobrir toda a tela */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetição da imagem */
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 300px;
+  background: rgba(234, 230, 200, 0.9); /* fundo semi-transparente */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.display {
+  background: black;
+  color: red;
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.attempts {
+  background: black;
+  color: white;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.btn{
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.A { background: red; }
+.B { background: yellow; color: black; }
+.C { background: blue; }
+.D { background: green; }
+
+.reset {
+  background: gray;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+.reset:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
