@@ -8,18 +8,18 @@ let idxPergunta = 0;
 let tentRest = 3;
 var pontuacao = 0;
 
-// True = lista atual, False = lista anterior ou lista futura
+// True = lista atual, False = lista anterior ou lista futura. A ideia disso é tratar como uma chacklist de listas já concluidas
 let isPrograma01 = true; 
 let isPrograma02 = false;
 let isPrograma03 = false;
 
 
-function isRight(resposta, gabarito, index, pts) {
+function isRight(resposta, gabarito, index, pts) { // Função que verifica se a resposta é igual ao gabarito
     if (resposta === gabarito[index]) {
-        idxPergunta++;
+        idxPergunta++; 
         console.log('+',pts,'pts');
         pontuacao += pts;
-        tentRest = 3;
+        tentRest = 3; 
         return true;
     } else {
         return false; // Executa o else, que por sua vez chama o isWrong()
@@ -32,7 +32,7 @@ function isWrong() { // Função para caso o jogador erre a pergunta
 }
 
 function pularFase() {
-    tentRest = 3;
+    tentRest = 3; // Ao errar em todas as tentativas, o numero de tentativas retorna a 3 na próxima questão
     idxPergunta++;
     console.log("Pulou a fase");
 }
@@ -42,7 +42,12 @@ options.forEach((option) => {
         const resposta = event.currentTarget.id; // A resposta é com base no nome do id do
         console.log(resposta);
 
-        if (isPrograma01) {
+        // Cada "Programa" seguira o seguinte escopo, verificar o numero de tentativas restantes atual, chamar a função isRight() e passar os seus devidos parametros. 
+        // Se o retorno da função for 'false', então será executado o else, que chama a função isWrong;
+
+        // Esse escopo de função é facilmente replicavel, basta alterar o numero do 'isPrograma' dentro primeiro if, e dentro de cada 'programa' que está função isRight()
+
+        if (isPrograma01) { 
             console.log("Lista 01");
             if (tentRest === 3){
                 if (isRight(resposta, programa1, idxPergunta, 30)) {
@@ -94,7 +99,7 @@ options.forEach((option) => {
         }
 
         if (isPrograma03) {
-            console.log("Lista 02");
+            console.log("Lista 03");
             if (tentRest === 3){
                 if (isRight(resposta, programa3, idxPergunta, 30)) {
                 } else {
@@ -125,8 +130,8 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
         if (idxPergunta === programa1.length) {
             isPrograma01 = false;
             isPrograma02 = true;
-            idxPergunta = 0;
-            tentRest = 3;
+            idxPergunta = 0; // Reseta o index
+            tentRest = 3; // Reseta o numero de tentativas
             console.log("Mudando para lista 02");
         }
     }
@@ -134,14 +139,14 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
         if (idxPergunta === programa1.length) {
             isPrograma02 = false;
             isPrograma03 = true;
-            idxPergunta = 0;
-            tentRest = 3;
+            idxPergunta = 0; // Reseta o index
+            tentRest = 3; // Reseta o numero de tentativas
             console.log("Mudando para lista 03");
         }
     }
     else if (isPrograma03) {
         if (idxPergunta === programa1.length) {
-            isPrograma03 = false;
+            isPrograma03 = false; // Quando a ultima lista recebe 'false' qualquer opção escolhida será indiferente 
             console.log("Acabaram as listas");
             console.log("Pontuação: ", pontuacao);
         }
