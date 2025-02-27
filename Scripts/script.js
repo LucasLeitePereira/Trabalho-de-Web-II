@@ -2,14 +2,13 @@ const options = document.querySelectorAll('button');
 const numTentativas = document.getElementById('numTentativas');
 const numCode = document.getElementById('numCode');
 
-
 const songRight = document.getElementById('songRight');
 const songWrong = document.getElementById('songWrong');
 const songNext = document.getElementById('songNext');
 
-const programa1 = [1, 'VERMELHO', 'VERDE', 'AZUL'];
-const programa2 = [2, 'VERMELHO', 'VERDE', 'VERDE', 'AZUL'];
-const programa3 = [3, 'VERDE', 'AZUL', 'VERMELHO', 'VERMELHO'];
+const programa1 = [41, 'VERMELHO', 'VERDE', 'AZUL'];
+const programa2 = [42, 'VERMELHO', 'VERDE', 'VERDE', 'AZUL'];
+const programa3 = [43, 'VERDE', 'AZUL', 'VERMELHO', 'VERMELHO'];
 
 let idxPergunta = 1;
 let tentRest = 3;
@@ -148,7 +147,7 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
             tentRest = 3; // Reseta o numero de tentativas
             console.log("Mudando para lista 02");
             songNext.play();
-            numCode.innerHTML = `-> ${idxPergunta}`;
+            numCode.innerHTML = `0${programa2[0]}-> ${idxPergunta}`;
         }
     }
     else if (isPrograma02) {
@@ -159,7 +158,7 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
             tentRest = 3; // Reseta o numero de tentativas
             console.log("Mudando para lista 03");
             songNext.play();
-            numCode.innerHTML = `-> ${idxPergunta}`;
+            numCode.innerHTML = `0${programa3[0]}-> ${idxPergunta}`;
         }
     }
     else if (isPrograma03) {
