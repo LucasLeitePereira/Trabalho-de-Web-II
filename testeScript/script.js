@@ -31,6 +31,12 @@ function isWrong() { // Função para caso o jogador erre a pergunta
     console.log("Tentativas restantes: ", tentRest);  
 }
 
+function pularFase() {
+    tentRest = 3;
+    idxPergunta++;
+    console.log("Pulou a fase");
+}
+
 options.forEach((option) => {
     option.addEventListener('click', (event) => {
         const resposta = event.currentTarget.id; // A resposta é com base no nome do id do
@@ -56,9 +62,7 @@ options.forEach((option) => {
             } else {
                 if (isRight(resposta, programa1, idxPergunta, 0)) {
                 } else {
-                    tentRest = 3;
-                    idxPergunta++;
-                    console.log("Pulou a fase");
+                    pularFase()
                 }
             }
         }
@@ -84,9 +88,7 @@ options.forEach((option) => {
             } else {
                 if (isRight(resposta, programa2, idxPergunta, 0)) {
                 } else {
-                    tentRest = 3;
-                    idxPergunta++;
-                    console.log("Pulou a fase");
+                    pularFase()
                 }
             }
         }
@@ -111,9 +113,7 @@ options.forEach((option) => {
             } else {
                 if (isRight(resposta, programa3, idxPergunta, 0)) {
                 } else {
-                    tentRest = 3;
-                    idxPergunta++;
-                    console.log("Pulou a fase");
+                    pularFase()
                 }
             }
         }
