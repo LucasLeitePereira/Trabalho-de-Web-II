@@ -1,7 +1,7 @@
 body {
   font-family: 'IBM Plex Mono', 'Courier New', monospace;
   text-align: center;
-  background-image: url('alladin11.jpg');
+  background-image: url('../imgs/alladin11.jpg');
   background-size: cover; /*imagem para cobrir toda a tela */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Evita repetição da imagem */
