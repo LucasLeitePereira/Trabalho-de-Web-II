@@ -6,7 +6,7 @@ const programa3 = ['VERDE', 'AZUL', 'VERMELHO', 'VERMELHO'];
 
 let idxPergunta = 0;
 let tentRest = 3;
-
+var pontuacao = 0;
 
 // True = lista atual, False = lista anterior ou lista futura
 let isPrograma01 = true; 
@@ -18,6 +18,7 @@ function isRight(resposta, gabarito, index, pts) {
     if (resposta === gabarito[index]) {
         idxPergunta++;
         console.log('+',pts,'pts');
+        pontuacao += pts;
         tentRest = 3;
         return true;
     } else {
@@ -32,7 +33,7 @@ function isWrong() { // Função para caso o jogador erre a pergunta
 
 options.forEach((option) => {
     option.addEventListener('click', (event) => {
-        const resposta = event.currentTarget.id; // A resposta é com base no nome do id do botão
+        const resposta = event.currentTarget.id; // A resposta é com base no nome do id do
         console.log(resposta);
 
         if (isPrograma01) {
@@ -142,6 +143,7 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
         if (idxPergunta === programa1.length) {
             isPrograma03 = false;
             console.log("Acabaram as listas");
+            console.log("Pontuação: ", pontuacao);
         }
     }
 }, 1000);
