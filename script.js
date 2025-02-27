@@ -148,6 +148,7 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
             tentRest = 3; // Reseta o numero de tentativas
             console.log("Mudando para lista 02");
             songNext.play();
+            numCode.innerHTML = `-> ${idxPergunta}`;
         }
     }
     else if (isPrograma02) {
@@ -158,6 +159,7 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
             tentRest = 3; // Reseta o numero de tentativas
             console.log("Mudando para lista 03");
             songNext.play();
+            numCode.innerHTML = `-> ${idxPergunta}`;
         }
     }
     else if (isPrograma03) {
