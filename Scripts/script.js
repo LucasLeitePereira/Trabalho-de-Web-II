@@ -6,12 +6,18 @@ const songRight = document.getElementById('songRight');
 const songWrong = document.getElementById('songWrong');
 const songNext = document.getElementById('songNext');
 
+// const programa1 = [41, 'VERMELHO', 'VERDE', 'AZUL','VERDE','VERDE',
+//     'VERMELHO','VERMELHO','VERDE','AZUL','AMARELO',
+//     'AMARELO','AZUL','VERDE','VERDE','AMARELO',
+//     'VERDE','AMARELO','VERDE','VERMELHO','VERDE',
+//     'VERMELHO','AMARELO','VERDE','VERMELHO','AZUL',
+//     'VERMELHO','AZUL','AZUL','AMARELO','VERDE' ];
 const programa1 = [41, 'VERMELHO', 'VERDE', 'AZUL'];
 const programa2 = [42, 'VERMELHO', 'VERDE', 'VERDE', 'AZUL'];
 const programa3 = [43, 'VERDE', 'AZUL', 'VERMELHO', 'VERMELHO'];
 
 let idxPergunta = 1;
-let tentRest = 3;
+let tentRest = 1;
 var pontuacao = 0;
 
 // True = lista atual, False = lista anterior ou lista futura. A ideia disso é tratar como uma chacklist de listas já concluidas
@@ -26,7 +32,7 @@ function isRight(resposta, gabarito, index, pts) { // Função que verifica se a
         idxPergunta++; 
         console.log('+',pts,'pts');
         pontuacao += pts;
-        tentRest = 3; 
+        tentRest = 1; 
         numTentativas.innerHTML = `Tentativas ${tentRest} de 3`; 
         return true;
     } else {
@@ -36,13 +42,13 @@ function isRight(resposta, gabarito, index, pts) { // Função que verifica se a
 }
 
 function isWrong() { // Função para caso o jogador erre a pergunta
-    tentRest--;
+    tentRest++;
     console.log("Tentativas restantes: ", tentRest);
     numTentativas.innerHTML = `Tentativas ${tentRest} de 3`; 
 }
 
 function pularFase() {
-    tentRest = 3; // Ao errar em todas as tentativas, o numero de tentativas retorna a 3 na próxima questão
+    tentRest = 1; // Ao errar em todas as tentativas, o numero de tentativas retorna a 1 na próxima questão
     idxPergunta++;
     console.log("Pulou a fase");
     numTentativas.innerHTML = `Tentativas ${tentRest} de 3`; 
@@ -60,7 +66,7 @@ options.forEach((option) => {
 
         if (isPrograma01) { 
             numCode.innerHTML = `-> ${idxPergunta}`;
-            if (tentRest === 3){
+            if (tentRest === 1){
                 if (isRight(resposta, programa1, idxPergunta, 3)) {
                 } else {
                     isWrong(); 
@@ -70,23 +76,18 @@ options.forEach((option) => {
                 } else {
                     isWrong();  
                 }
-            } else if (tentRest === 1) {
+            } else if (tentRest === 3) {
                 if (isRight(resposta, programa1, idxPergunta, 1)) {
                 } else {
-                    isWrong();     
+                    pularFase()     
                 }
-            } else {
-                if (isRight(resposta, programa1, idxPergunta, 0)) {
-                } else {
-                    pularFase()
-                }
-            }
+            } 
             numCode.innerHTML = `-> ${idxPergunta}`;
         }
 
         if (isPrograma02) {
             numCode.innerHTML = `-> ${idxPergunta}`;
-            if (tentRest === 3){
+            if (tentRest === 1){
                 if (isRight(resposta, programa2, idxPergunta, 3)) {
                 } else {
                     isWrong();  
@@ -96,14 +97,9 @@ options.forEach((option) => {
                 } else {
                     isWrong();   
                 }
-            } else if (tentRest === 1) {
+            } else if (tentRest === 3) {
                 if (isRight(resposta, programa2, idxPergunta, 1)) {
 
-                } else {
-                    isWrong();    
-                }
-            } else {
-                if (isRight(resposta, programa2, idxPergunta, 0)) {
                 } else {
                     pularFase()
                 }
@@ -113,7 +109,7 @@ options.forEach((option) => {
 
         if (isPrograma03) {
             console.log("Lista 03");
-            if (tentRest === 3){
+            if (tentRest === 1){
                 if (isRight(resposta, programa3, idxPergunta, 3)) {
                 } else {
                     isWrong();   
@@ -123,17 +119,13 @@ options.forEach((option) => {
                 } else {
                     isWrong();    
                 }
-            } else if (tentRest === 1) {
+            } else if (tentRest === 3) {
                 if (isRight(resposta, programa3, idxPergunta, 1)) {
-                } else {
-                    isWrong();    
-                }
-            } else {
-                if (isRight(resposta, programa3, idxPergunta, 0)) {
                 } else {
                     pularFase()
                 }
             }
+            numCode.innerHTML = `-> ${idxPergunta}`;
         }
         })
     })
@@ -144,7 +136,7 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
             isPrograma01 = false;
             isPrograma02 = true;
             idxPergunta = 1; // Reseta o index
-            tentRest = 3; // Reseta o numero de tentativas
+            tentRest = 1; // Reseta o numero de tentativas
             console.log("Mudando para lista 02");
             songNext.play();
             numCode.innerHTML = `0${programa2[0]}-> ${idxPergunta}`;
@@ -155,7 +147,7 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
             isPrograma02 = false;
             isPrograma03 = true;
             idxPergunta = 1; // Reseta o index
-            tentRest = 3; // Reseta o numero de tentativas
+            tentRest = 1; // Reseta o numero de tentativas
             console.log("Mudando para lista 03");
             songNext.play();
             numCode.innerHTML = `0${programa3[0]}-> ${idxPergunta}`;
@@ -169,4 +161,8 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
         }
     }
     
-}, 1000);
+}, 100);
+
+function reiniciar(){
+    location.reload();
+}
