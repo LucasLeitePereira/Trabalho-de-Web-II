@@ -12,7 +12,7 @@ const songNext = document.getElementById('songNext');
 //     'VERDE','AMARELO','VERDE','VERMELHO','VERDE',
 //     'VERMELHO','AMARELO','VERDE','VERMELHO','AZUL',
 //     'VERMELHO','AZUL','AZUL','AMARELO','VERDE' ];
-const programa1 = [41, 'VERMELHO', 'VERDE', 'AZUL'];
+const programa1 = [41, 'VERMELHO', 'VERDE', 'AZUL']; // Teste
 const programa2 = [42, 'VERMELHO', 'VERDE', 'VERDE', 'AZUL'];
 const programa3 = [43, 'VERDE', 'AZUL', 'VERMELHO', 'VERMELHO'];
 
@@ -166,3 +166,6 @@ setInterval(() => { // A cada um segundo, a função verifica se o jogador ja te
 function reiniciar(){
     location.reload();
 }
+
+
+// Pontuação ao final de cada programa e poder escolher o programa
