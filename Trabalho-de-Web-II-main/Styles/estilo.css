@@ -1,7 +1,6 @@
 body {
   font-family: 'IBM Plex Mono', 'Courier New', monospace;
   text-align: center;
-  background-image: url('../imgs/alladin11.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,7 +21,7 @@ body {
   z-index: -1;
 }
 
-/* Contêiner que centraliza os elementos */
+/* Contêiner do jogo */
 .container-centralizado {
   display: flex;
   flex-direction: column;
@@ -86,7 +85,7 @@ h1 {
 .C { background: blue; }
 .D { background: green; }
 
-.reset {
+.reset{
   background: gray;
   color: white;
   border: none;
