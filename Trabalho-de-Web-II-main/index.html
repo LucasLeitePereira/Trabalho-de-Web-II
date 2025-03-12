@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pense Bem</title>
+    <link rel="stylesheet" href="./Styles/estilo.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="videoplayback.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos em HTML5.
+    </video>
+
+    <div class="container-centralizado">
+        <div class="container">
+            <h1>Pense Bem</h1>
+            <div class="display">
+                <span id="numCode" class="code">041->1:</span>
+            </div>
+            <div id='numTentativas' class="attempts">Tentativa 3 de 3</div>
+            <div class="buttons">
+                <button id='VERMELHO' class="btn A">A</button>
+                <button id='AMARELO' class="btn B">B</button>
+                <button id='AZUL' class="btn C">C</button>
+                <button id='VERDE' class="btn D">D</button>
+            </div>
+            <button class="reset">Reiniciar Jogo</button>
+
+            <audio id="songRight" src="./Songs/song-rightanswer.mp3"></audio>
+            <audio id="songWrong" src="./Songs/song-wronganswer.mp3"></audio>
+            <audio id="songNext" src="./Songs/song-next.mp3"></audio>
+        </div>
+        
+        <div class="container-verde">
+            <p>Escolha um dos 5 Gabaritos</p>
+            <div class="botoes-gabaritos">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+        </div>
+    </div>
+    <script src="./Scripts/script.js"></script>
+</body>
+</html>
