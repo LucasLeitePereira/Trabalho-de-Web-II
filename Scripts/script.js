@@ -1,24 +1,47 @@
-const opcoes = document.querySelector('.buttons');
-const botoes = opcoes.querySelectorAll('button');
+// Elementos do HTML
+const opcoes = document.querySelector('.buttons'); // Dessa forma ele pega apenas os botões das alternativas
+const botoes = opcoes.querySelectorAll('button'); // E evita o bug da resposta e do audio
 
 const numTentativas = document.getElementById('numTentativas');
 const numCodigo = document.getElementById('numCode');
 
+// Audios
 const somCerto = document.getElementById('songRight');
 const somErrado = document.getElementById('songWrong');
 const somProximo = document.getElementById('songNext');
 
+// Gabarito de cada programa
 const programas = [
-    [41, 'VERMELHO', 'VERDE', 'AZUL','VERDE','VERDE',
-            'VERMELHO','VERMELHO','VERDE','AZUL','AMARELO',
-            'AMARELO','AZUL','VERDE','VERDE','AMARELO',
-            'VERDE','AMARELO','VERDE','VERMELHO','VERDE',
-            'VERMELHO','AMARELO','VERDE','VERMELHO','AZUL',
-            'VERMELHO','AZUL','AZUL','AMARELO','VERDE' ],
-    [42, 'VERMELHO', 'VERDE', 'VERDE', 'AZUL'],
-    [43, 'VERDE', 'AZUL', 'VERMELHO', 'VERMELHO'],
-    [44, 'AZUL', 'VERMELHO', 'VERDE', 'AMARELO'],
-    [45, 'AMARELO', 'AZUL', 'VERDE', 'VERMELHO']
+    [41, 'VERMELHO', 'VERDE', 'AZUL', 'AMARELO', 'VERDE',
+        'VERMELHO', 'VERMELHO', 'VERDE', 'AZUL', 'AMARELO',
+        'AMARELO', 'AZUL', 'VERDE', 'VERDE', 'AMARELO',
+        'VERDE', 'AMARELO', 'VERDE', 'VERMELHO', 'VERDE',
+        'VERMELHO', 'AMARELO', 'VERDE', 'VERMELHO', 'AZUL',
+        'VERMELHO', 'AZUL', 'AZUL', 'AMARELO', 'VERDE' ],
+    [42, 'VERMELHO', 'AMARELO', 'VERMELHO', 'VERMELHO', 'VERDE',
+        'VERMELHO', 'AZUL', 'VERMELHO', 'AZUL', 'AZUL',
+        'AMARELO', 'VERDE', 'VERDE', 'VERDE', 'AMARELO',
+        'VERDE', 'AZUL', 'VERDE', 'VERDE', 'VERDE', 
+        'VERMELHO', 'AZUL', 'VERMELHO', 'VERMELHO', 'AMARELO',
+        'AZUL', 'VERMELHO', 'VERMELHO', 'AMARELO', 'VERMELHO' ],
+    [43, 'VERDE', 'AMARELO', 'AMARELO', 'VERMELHO', 'AZUL',
+        'VERDE', 'AZUL', 'VERDE', 'VERDE', 'VERDE',
+        'VERMELHO', 'AZUL', 'VERMELHO', 'VERMELHO', 'AMARELO',
+        'VERDE', 'AMARELO', 'VERMELHO', 'VERDE', 'AMARELO',
+        'AMARELO', 'VERDE', 'VERDE', 'AZUL', 'AZUL',
+        'AMARELO', 'VERMELHO', 'VERDE', 'AMARELO', 'VERMELHO' ],
+    [44, 'VERDE', 'AMARELO', 'AMARELO', 'VERDE', 'AZUL',
+        'AZUL', 'AZUL', 'AMARELO', 'VERMELHO', 'VERDE',
+        'AMARELO', 'VERMELHO', 'VERDE', 'AMARELO', 'AMARELO',
+        'VERMELHO', 'AMARELO', 'AMARELO', 'VERDE', 'VERMELHO',
+        'AMARELO', 'VERDE', 'VERMELHO', 'AMARELO', 'AZUL',
+        'AZUL', 'VERDE', 'VERDE', 'AZUL', 'AZUL' ],
+    [45, 'VERDE', 'VERDE', 'VERMELHO', 'VERMELHO', 'AZUL',
+        'VERDE', 'AMARELO', 'AMARELO', 'VERDE', 'VERDE',
+        'AMARELO', 'AMARELO', 'VERDE', 'VERMELHO', 'AMARELO',
+        'AMARELO', 'AMARELO', 'AMARELO', 'VERDE', 'VERMELHO',
+        'AMARELO', 'VERDE', 'VERDE', 'VERDE', 'AZUL',
+        'VERDE', 'AZUL', 'AMARELO', 'AMARELO', 'AMARELO' ]
 ];
 
 let indiceProgramaAtual = 0;
