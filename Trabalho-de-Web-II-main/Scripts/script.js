@@ -1,100 +1,109 @@
-const options = document.querySelectorAll('button');
+const opcoes = document.querySelector('.buttons');
+const botoes = opcoes.querySelectorAll('button');
+
 const numTentativas = document.getElementById('numTentativas');
-const numCode = document.getElementById('numCode');
+const numCodigo = document.getElementById('numCode');
 
-const songRight = document.getElementById('songRight');
-const songWrong = document.getElementById('songWrong');
-const songNext = document.getElementById('songNext');
+const somCerto = document.getElementById('songRight');
+const somErrado = document.getElementById('songWrong');
+const somProximo = document.getElementById('songNext');
 
-const programs = [
-    [41, 'VERMELHO', 'VERDE', 'AZUL'],          
-    [42, 'VERMELHO', 'VERDE', 'VERDE', 'AZUL'], 
-    [43, 'VERDE', 'AZUL', 'VERMELHO', 'VERMELHO'], 
-    [44, 'AZUL', 'VERMELHO', 'VERDE', 'AMARELO'], 
-    [45, 'AMARELO', 'AZUL', 'VERDE', 'VERMELHO']  
+const programas = [
+    [41, 'VERMELHO', 'VERDE', 'AZUL','VERDE','VERDE',
+            'VERMELHO','VERMELHO','VERDE','AZUL','AMARELO',
+            'AMARELO','AZUL','VERDE','VERDE','AMARELO',
+            'VERDE','AMARELO','VERDE','VERMELHO','VERDE',
+            'VERMELHO','AMARELO','VERDE','VERMELHO','AZUL',
+            'VERMELHO','AZUL','AZUL','AMARELO','VERDE' ],
+    [42, 'VERMELHO', 'VERDE', 'VERDE', 'AZUL'],
+    [43, 'VERDE', 'AZUL', 'VERMELHO', 'VERMELHO'],
+    [44, 'AZUL', 'VERMELHO', 'VERDE', 'AMARELO'],
+    [45, 'AMARELO', 'AZUL', 'VERDE', 'VERMELHO']
 ];
 
-let currentProgramIndex = 0;
-let idxPergunta = 1;
-let tentRest = 1;
+let indiceProgramaAtual = 0;
+let indicePergunta = 1;
+let tentativasRestantes = 1;
 let pontuacao = 0;
 
-function selectProgram(programIndex) {
-    if (programIndex >= programs.length) return;
+function selecionarPrograma(indicePrograma) {
+    if (indicePrograma >= programas.length) return;
     
-    currentProgramIndex = programIndex;
-    idxPergunta = 1;
-    tentRest = 1;
+    indiceProgramaAtual = indicePrograma;
+    indicePergunta = 1;
+    tentativasRestantes = 1;
     pontuacao = 0;
     
-    numCode.textContent = `0${programs[currentProgramIndex][0]}-> ${idxPergunta}`;
-    numTentativas.textContent = `Tentativas ${tentRest} de 3`;
+    numCodigo.textContent = `0${programas[indiceProgramaAtual][0]}-> ${indicePergunta}`;
+    numTentativas.textContent = `Tentativas ${tentativasRestantes} de 3`;
     
-    document.querySelectorAll('.gabarito-btn').forEach(btn => {
-        btn.classList.remove('active');
+    document.querySelectorAll('.gabarito-btn').forEach(botao => {
+        botao.classList.remove('active');
     });
-    document.querySelectorAll('.gabarito-btn')[programIndex].classList.add('active');
+    document.querySelectorAll('.gabarito-btn')[indicePrograma].classList.add('active');
     
-    songNext.play();
+    somProximo.play();
 }
 
-document.querySelectorAll('.gabarito-btn').forEach((button, index) => {
-    button.addEventListener('click', () => selectProgram(index));
+document.querySelectorAll('.gabarito-btn').forEach((botao, indice) => {
+    botao.addEventListener('click', () => selecionarPrograma(indice));
 });
 
 function verificarResposta(resposta, programa, indice) {
     if (resposta === programa[indice]) {
-        songRight.play();
-        pontuacao += 4 - tentRest;
-        console.log('+', 4 - tentRest, 'pts');
+        somCerto.play();
+        pontuacao += 4 - tentativasRestantes;
+        console.log('+', 4 - tentativasRestantes, 'pts');
         return true;
     }
-    songWrong.play(); // Ao mudar de programa ele toca o som de questão errada
+    somErrado.play(); // Toca o som de resposta errada ao mudar de programa
     return false;
 }
 
 function atualizarEstado() {
-    numTentativas.textContent = `Tentativas ${tentRest} de 3`;
-    numCode.textContent = `0${programs[currentProgramIndex][0]}-> ${idxPergunta}`;
+    numTentativas.textContent = `Tentativas ${tentativasRestantes} de 3`;
+    numCodigo.textContent = `0${programas[indiceProgramaAtual][0]}-> ${indicePergunta}`;
 }
 
 function proximoPrograma() {
-    currentProgramIndex++;
-    idxPergunta = 1;
-    tentRest = 1;
+    indiceProgramaAtual++;
+    indicePergunta = 1;
+    tentativasRestantes = 1;
     
-    if (currentProgramIndex < programs.length) {
-        console.log(`Mudando para lista ${currentProgramIndex + 1}`);
-        songNext.play();
-        atualizarEstado();
+    if (indiceProgramaAtual < programas.length) {
+        numCodigo.textContent = `Pontuação: ${pontuacao}pts`;
+        somProximo.play();
+        setTimeout(() => {
+            atualizarEstado();
+        }, 2000)
     } else {
         console.log("Acabaram as listas");
-        numCode.textContent = `Pontuação: ${pontuacao}pts`;
-        songNext.play();
+        numCodigo.textContent = `Pontuação: ${pontuacao}pts`;
+        somProximo.play();
     }
 }
 
-options.forEach(option => {
-    option.addEventListener('click', ({ currentTarget }) => {
+botoes.forEach(botao => {
+    botao.addEventListener('click', ({ currentTarget }) => {
         const resposta = currentTarget.id;
-        const programaAtual = programs[currentProgramIndex];
+        const programaAtual = programas[indiceProgramaAtual];
         
-        if (!programaAtual || currentProgramIndex >= programs.length) return;
+        if (!programaAtual || indiceProgramaAtual >= programas.length) return;
 
-        if (verificarResposta(resposta, programaAtual, idxPergunta)) {
-            idxPergunta++;
-            tentRest = 1;
-        } else if (tentRest < 3) {
-            tentRest++;
+        if (verificarResposta(resposta, programaAtual, indicePergunta)) {
+            indicePergunta++;
+            tentativasRestantes = 1;
+        } else if (tentativasRestantes < 3) {
+            tentativasRestantes++;
         } else {
-            tentRest = 1;
-            idxPergunta++;
+            tentativasRestantes = 1;
+            indicePergunta++;
         }
 
         atualizarEstado();
 
         // Verifica conclusão do programa atual
-        if (idxPergunta >= programaAtual.length) {
+        if (indicePergunta >= programaAtual.length) {
             proximoPrograma();
         }
     });
