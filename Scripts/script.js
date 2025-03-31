@@ -98,7 +98,7 @@ function proximoPrograma() {
         somProximo.play();
         setTimeout(() => {
             atualizarEstado();
-        }, 2000)
+        }, 3000)
     } else {
         console.log("Acabaram as listas");
         numCodigo.textContent = `Pontuação: ${pontuacao}pts`;
