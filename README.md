@@ -7,5 +7,3 @@ Alunos:
 - Maria Fernanda Ferreira de Souza
 
 Livro Escolhido: "Disney - Aladdin em Os Misterios do Oriente"
-
-Teste
